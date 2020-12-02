@@ -1,11 +1,11 @@
-const express = require('express')
-const app = express()
-const port = 3000
+exports.handler = async (event) => {
+    // TODO implement
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+    console.log(event)
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-})
+    const response = {
+        statusCode: 200,
+        body: JSON.stringify('Hello from Lambda!'),
+    };
+    return response;
+};                 

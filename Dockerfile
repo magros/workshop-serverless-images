@@ -1,8 +1,4 @@
-FROM node:10
-WORKDIR /usr/src/app
-COPY start.sh /usr/local/bin/start
-COPY package.json /usr/src/app/package.json
+FROM public.ecr.aws/lambda/nodejs:12
+COPY . ${LAMBDA_TASK_ROOT}
 RUN npm install
-RUN chmod +x /usr/local/bin/start
-COPY . .
-CMD ["/usr/local/bin/start"]
+CMD [ "app.handler" ]
