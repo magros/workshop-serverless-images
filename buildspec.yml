@@ -8,27 +8,18 @@ phases:
     commands:
       - echo "Login with ecr credentials"
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION  --no-include-email)
-  #      - docker pull $DOCKER_APP_NAME:latest
   build:
     commands:
       - echo "Building images..."
-      #      - echo $DOCKER_HUB_PASSWORD | docker login --username $DOCKER_HUB_USERNAME --password-stdin
       - docker build . -t $DOCKER_IMAGE:latest
   post_build:
     commands:
       - if [ $CODEBUILD_BUILD_SUCCEEDING = 1 ];
         then
         echo "Pushing images to ecs docker repository";
-        #        $(aws ecr get-login --region $AWS_DEFAULT_REGION  --no-include-email);
         docker push $DOCKER_IMAGE:latest;
-        #        printf '[{"name":"mailsend_app","imageUri":"%s"}]' $DOCKER_APP_NAME:latest > app-image-definitions.json;
-        #        printf '[{"name":"mailsend_queue","imageUri":"%s"}]' $DOCKER_APP_NAME:latest > queue-image-definitions.json;
-        #        printf '[{"name":"mailsend_scheduler","imageUri":"%s"}]' $DOCKER_APP_NAME:latest > scheduler-image-definitions.json;
         else
         echo 'Build failed ignoring deployment';
         fi
 artifacts:
   files:
-#    - app-image-definitions.json
-#    - queue-image-definitions.json
-#    - scheduler-image-definitions.json
