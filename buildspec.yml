@@ -14,6 +14,6 @@ phases:
       - docker build . -t $DOCKER_IMAGE:latest
       - docker push $DOCKER_IMAGE:latest
       - DIGEST_IMAGE=$(docker images --digests --format '{{.Digest}}' | head -n 1)
-      - export IMAGE_URI=$(echo AWS_SECRET_ACCESS_KEY@$DIGEST_IMAGE)
+      - export IMAGE_URI=$(echo $DOCKER_IMAGE@$DIGEST_IMAGE)
       - npm i -g serverless
       - sls deploy
