@@ -5,4 +5,9 @@ provider:
 
 functions:
   api:
-    image: 596445984235.dkr.ecr.us-east-1.amazonaws.com/workshop_serverless_images@45aed18f2e4af8fea4558280438ce9de94d15e30f9ca158d780aa05873f0ade5
+    events:
+      - http:
+          path: hola
+          method: get
+          cors: true
+    image: 596445984235.dkr.ecr.us-east-1.amazonaws.com/workshop_serverless_images@sha256:45aed18f2e4af8fea4558280438ce9de94d15e30f9ca158d780aa05873f0ade5
