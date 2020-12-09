@@ -1,8 +1,0 @@
-app:
-  build:
-    image: 596445984235.dkr.ecr.us-east-1.amazonaws.com/workshop_serverless_images
-    dockerfile_path: ./Dockerfile
-  aws_generator:
-    image: codeship/aws-dockercfg-generator
-    encrypted_env: aws_creds.encrypted # contains Secret, AccessKey and Region
-    add_docker: true

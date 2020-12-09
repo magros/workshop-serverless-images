@@ -1,6 +1,0 @@
-- name: ECR Push
-  service: app
-  type: push
-  image_name: 596445984235.dkr.ecr.us-east-1.amazonaws.com/workshop_serverless_images
-  registry: 596445984235.dkr.ecr.us-east-1.amazonaws.com
-  dockercfg_service: dockercfg_generator
