@@ -5,4 +5,4 @@ provider:
 
 functions:
   api:
-    image: $DOCKER_IMAGE
+    image: 596445984235.dkr.ecr.us-east-1.amazonaws.com/workshop_serverless_images
