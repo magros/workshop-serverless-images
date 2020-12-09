@@ -5,4 +5,4 @@ provider:
 
 functions:
   api:
-    image: <account>.dkr.ecr.<region>.amazonaws.com/<repository>@<digest>
+    image: $DOCKER_IMAGE
