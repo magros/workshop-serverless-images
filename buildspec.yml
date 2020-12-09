@@ -12,14 +12,8 @@ phases:
     commands:
       - echo "Building images..."
       - docker build . -t $DOCKER_IMAGE:latest
-#      - npm i -g serverless
-#      - sls deploy
-  post_build:
-    commands:
-      - if [ $CODEBUILD_BUILD_SUCCEEDING = 1 ];
-        then
-        echo "Pushing images to ecs docker repository";
-        docker push $DOCKER_IMAGE:latest;
-        else
-        echo 'Build failed ignoring deployment';
-        fi
+      - docker push $DOCKER_IMAGE:latest
+      - DIGEST_IMAGE=$(docker images --digests --format '{{.Digest}}' | head -n 1)
+      - export IMAGE_URI=$(echo AWS_SECRET_ACCESS_KEY@$DIGEST_IMAGE)
+      - npm i -g serverless
+      - sls deploy
